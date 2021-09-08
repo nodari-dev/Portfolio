@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+$primary-font: 'Roboto Mono', monospace;
+
+$dark-color: rgba(25, 25, 25, 1);
+$dark-color-half: rgba(25, 25, 25, 0.5);
+$light-color: rgba(242, 242, 242, 1);
+$white-color: rgba(255, 255, 255, 1);
+$grey-color: rgba(196, 196, 196, 1);
+
+$weight-bold: 700;
+$weight-regular: 400;
+
+@mixin dev-border{
+  border:1px solid red;
+  box-sizing: border-box;
+}
+@mixin default-border-radius{
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}

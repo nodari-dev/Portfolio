@@ -1,0 +1,11 @@
+@import '../../theme/variables';
+
+a.button-style{
+  min-width: 150px;
+  padding: 10px 20px;
+  color: $white-color;
+  background-color: $dark-color;
+  text-decoration: none;
+  position: relative;
+  @include default-border-radius;
+}

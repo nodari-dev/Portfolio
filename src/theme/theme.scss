@@ -1,0 +1,56 @@
+@import 'variables';
+
+*{
+  margin:0;
+  padding:0;
+}
+
+body{
+  background-color: $light-color;
+  color: $dark-color;
+  font-family: $primary-font;
+  text-transform: lowercase;
+}
+
+p, a{
+  font-size: 1.125rem;
+}
+
+span, h2{
+  font-size: 1.5rem;
+}
+
+a{
+  color: $dark-color;
+
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-weight: $weight-bold;
+}
+
+h1{
+  font-size: 4.5rem;
+  -webkit-text-stroke: 2px $dark-color;
+}
+
+ul{
+  list-style: none;
+}
+
+section{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.container{
+  width: 80%;
+  position: relative;
+}
+
