@@ -1,17 +1,14 @@
 import React from 'react';
-import './style.scss'
-import Navigation from "../Navigation/Navigation";
+import './style.scss';
+import Home from "../Home/Home";
+import Projects from "../Projects/Projects";
 
 class App extends React.Component<any, any> {
   render() {
     return(
         <>
-          <Navigation/>
-          <section>
-              <div className={"container"}>
-
-              </div>
-          </section>
+            <Projects />
+            {/*<Home/>*/}
         </>
     )
   }

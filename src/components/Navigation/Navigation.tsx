@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss'
 import CustomLink from "../CustomLink/CustomLink";
+
 class Navigation extends React.Component<any, any>{
   render(){
     return(
