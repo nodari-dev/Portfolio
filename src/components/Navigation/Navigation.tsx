@@ -9,9 +9,10 @@ class Navigation extends React.Component<any, any>{
           <div className="container">
               <a href="/" className={'logo'}>nodari.</a>
               <ul>
-                  <li><a href="#">work</a></li>
-                  <li><a href="#">about</a></li>
-                  <li><CustomLink link='#' text="contact me" /></li>
+                  <li><a href="/work">work</a></li>
+                  <li><a href="/about">about</a></li>
+                  <li><a href="/resume">resume</a></li>
+                  <li><CustomLink link='/contact' text="contact me" /></li>
               </ul>
           </div>
         </section>

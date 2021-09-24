@@ -1,0 +1,51 @@
+@import '../../theme/variables';
+
+section.about{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & .container{
+
+    & img{
+      width: 100%;
+    }
+
+    & .text-container{
+      width: 50%;
+      margin: 100px 0;
+    }
+
+    & .content{
+      width:100%;
+      margin: 50px 0;
+
+      & ul.certificates-list,
+      & ul.content-list{
+        width: 100%;
+        margin: 20px 0;
+      }
+
+      & ul.certificates-list{
+
+        & li{
+          min-height: 300px;
+        }
+      }
+
+      & ul.content-list{
+        & li{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          min-height: 120px;
+          border:2px solid $dark-color;
+          padding: 15px 25px;
+          box-sizing: border-box;
+        }
+      }
+    }
+  }
+
+}

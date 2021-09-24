@@ -1,0 +1,70 @@
+@import '../../theme/variables';
+
+section.case{
+  margin: 100px 0;
+
+  & .container{
+    display: flex;
+    flex-wrap: wrap;
+
+    & article.article{
+      width: 75%;
+
+      & span.case-category{
+        font-weight: $weight-bold;
+        color: $dark-color-half;
+      }
+
+      & ul.case-tech-list{
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+
+        & li {
+          &:not(:first-child) {
+            margin: 0 10px;
+          }
+
+          &:first-child{
+            font-weight: $weight-bold;
+          }
+        }
+      }
+
+      & p{
+
+        &:not(:first-child){
+          margin: 20px 0;
+        }
+
+        &:first-child{
+          margin: 20px 0 20px 0;
+        }
+      }
+    }
+
+    & aside.sidebar{
+      width:25%;
+      position: sticky;
+      box-sizing: border-box;
+      padding-left: 10px;
+
+      & ul{
+        border-left:1px solid $dark-color;
+        margin-left: 25px;
+
+        & li{
+          margin-left: 25px;
+
+          &:first-child{
+            margin-bottom: 25px;
+          }
+
+          &:not(:first-child){
+            margin: 10px 25px;
+          }
+        }
+      }
+    }
+  }
+}

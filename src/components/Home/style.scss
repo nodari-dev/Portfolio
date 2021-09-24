@@ -1,5 +1,7 @@
+@import '../../theme/variables';
+
 section.home{
-  min-height: calc( 100vh - 124px);
+  @include between-nav-footer;
 
   & .container{
     display: flex;
@@ -24,10 +26,10 @@ section.home{
         & li{
           display: flex;
           align-items: center;
-          margin: 0 20px;
+          margin: 0 15px;
 
           & img{
-            width: 63px;
+            width: 43px;
           }
         }
       }

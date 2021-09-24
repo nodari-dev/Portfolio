@@ -1,0 +1,35 @@
+@import '../../theme/variables';
+
+section.contact{
+
+  & .container{
+    @include between-nav-footer;
+
+    & .text-container{
+      display: flex;
+      align-items: center;
+
+      & div{
+        width:100%;
+
+        & p{
+          margin: 10px 0;
+        }
+
+        & a{
+          font-weight: $weight-bold;
+        }
+      }
+    }
+
+    & .image-container{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      & img{
+        width:100%;
+      }
+    }
+  }
+}

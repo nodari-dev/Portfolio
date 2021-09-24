@@ -1,6 +1,35 @@
 @import '../../theme/variables';
 
 section.footer{
-  min-height: 145px;
-  background-color: $dark-color;
+  min-height: 120px;
+  clear: both;
+  display: flex;
+  align-items: center;
+
+  & .container{
+    display: flex;
+    justify-content: space-between;
+
+    & ul{
+      display: flex;
+
+      & li{
+
+        &:not(:first-child){
+          margin: 0 10px;
+        }
+
+        &:first-child{
+          margin-right: 10px;
+        }
+
+        & a{
+
+          & img{
+            width: 25px;
+          }
+        }
+      }
+    }
+  }
 }

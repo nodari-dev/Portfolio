@@ -1,0 +1,19 @@
+@import '../../theme/variables';
+
+section.not-found{
+
+  & .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include between-nav-footer;
+
+    & .text-container{
+      width: 500px;
+
+      & h1, & p{
+        margin: 20px 0;
+      }
+    }
+  }
+}

@@ -3,8 +3,9 @@
 section.navigation{
 
   & .container{
-    padding: 50px 0;
+    min-height: 120px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 
     & a.logo{

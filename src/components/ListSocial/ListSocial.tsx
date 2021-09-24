@@ -1,7 +1,6 @@
 import React from "react";
 import './style.scss';
 
-
 class ListSocial extends React.Component<any, any> {
     render() {
         return(

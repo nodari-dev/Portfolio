@@ -23,6 +23,9 @@ class Home extends React.Component<any, any> {
                                     <img src={process.env.PUBLIC_URL + 'assets/images/svg/react.svg'} alt=""/>
                                 </li>
                                 <li>
+                                    <img src={process.env.PUBLIC_URL + 'assets/images/svg/php.svg'} alt=""/>
+                                </li>
+                                <li>
                                     <img src={process.env.PUBLIC_URL + 'assets/images/svg/wordpress.svg'} alt=""/>
                                 </li>
                                 <li>
@@ -35,11 +38,9 @@ class Home extends React.Component<any, any> {
                                     <img src={process.env.PUBLIC_URL + 'assets/images/svg/less.svg'} alt=""/>
                                 </li>
                             </ul>
-                            <ListSocial />
                         </div>
                     </div>
                 </section>
-                <Footer />
             </>
         )
     }
