@@ -1,20 +1,21 @@
 import React from 'react';
 import './style.scss'
 import CustomLink from "../CustomLink/CustomLink";
+import { Link } from "react-router-dom";
 
 class Navigation extends React.Component<any, any>{
   render(){
     return(
         <section className={'navigation'}>
-          <div className="container">
-              <a href="/" className={'logo'}>nodari.</a>
+            <div className="container">
+              <Link to="/" className={'logo'}>nodari.</Link>
               <ul>
-                  <li><a href="/work">work</a></li>
-                  <li><a href="/about">about</a></li>
-                  <li><a href="/resume">resume</a></li>
+                  <li><Link to="/work">work</Link></li>
+                  <li><Link to="/about">about</Link></li>
+                  <li><Link to="/resume">resume</Link></li>
                   <li><CustomLink link='/contact' text="contact me" /></li>
               </ul>
-          </div>
+            </div>
         </section>
     )
   }

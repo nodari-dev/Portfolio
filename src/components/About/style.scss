@@ -26,14 +26,8 @@ section.about{
         margin: 20px 0;
       }
 
-      & ul.certificates-list{
-
-        & li{
-          min-height: 300px;
-        }
-      }
-
       & ul.content-list{
+
         & li{
           display: flex;
           align-items: center;
@@ -47,5 +41,4 @@ section.about{
       }
     }
   }
-
 }
