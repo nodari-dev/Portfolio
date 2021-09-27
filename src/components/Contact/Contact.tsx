@@ -1,6 +1,5 @@
 import React from 'react';
 import './style.scss'
-import Footer from "../Footer/Footer";
 
 class Contact extends React.Component<any, any>{
     render(){

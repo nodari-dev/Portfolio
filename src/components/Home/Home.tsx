@@ -1,7 +1,5 @@
 import React from "react";
 import './style.scss';
-import ListSocial from "../ListSocial/ListSocial";
-import Footer from "../Footer/Footer";
 
 class Home extends React.Component<any, any> {
     render() {

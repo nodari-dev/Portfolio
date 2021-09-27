@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch, Redirect, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import './style.scss';
 import Home from "../Home/Home";
@@ -9,11 +9,13 @@ import NotFound from "../NotFound/NotFound";
 import Contact from "../Contact/Contact";
 import Footer from "../Footer/Footer";
 import Navigation from "../Navigation/Navigation";
+import Preloader from "../Preloader/Preloader";
 
 class App extends React.Component<any, any> {
   render() {
     return(
         <>
+            <Preloader />
             <Router>
                 <Navigation/>
                 <Switch>
@@ -24,7 +26,6 @@ class App extends React.Component<any, any> {
                     <Route component={NotFound} />
                 </Switch>
             </Router>
-
             <Footer />
         </>
     )
