@@ -15,7 +15,7 @@ class App extends React.Component<any, any> {
   render() {
     return(
         <>
-            <Preloader />
+            {/*<Preloader />*/}
             <Router>
                 <Navigation/>
                 <Switch>

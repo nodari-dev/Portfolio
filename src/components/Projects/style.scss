@@ -20,8 +20,10 @@ section.projects{
         opacity: .8;
         text-decoration: underline;
 
-        &.active-tag{
+        &.active{
           opacity: 1;
+          border:1px solid red;
+          box-sizing: border-box;
         }
       }
     }
@@ -45,7 +47,7 @@ section.projects-list{
         position: relative;
         //transition: opacity 0.4s cubic-bezier(0, 1, 0.4, 1), transform 0.4s cubic-bezier(0.18, 1.25, 0.4, 1), visibility 0.4s linear;
 
-        &.hidden{
+        &.active{
           @include dev-border;
 
           animation: hideCase 2s;

@@ -2,6 +2,17 @@ import React from 'react';
 import './style.scss';
 
 class Projects extends React.Component<any, any> {
+    constructor(props: string ) {
+        super(props);
+        this.state = {
+            active: "active",
+            default: "default",
+            dataKey: "data-tag",
+            caseKey: "case",
+            filter: "filter"
+
+        };
+    }
 
     filterCases = (e: any) => {
         // Click on filter and select one or more
@@ -9,41 +20,73 @@ class Projects extends React.Component<any, any> {
         // 2. check all filters classes and add them to array
         // 3. filter items according to array with tags
 
-        e.target.classList.toggle("active-tag");
+        e.target.classList.toggle(this.state.active);
         let tagList = [];
-        let caseList: any = document.querySelectorAll(".case");
-        let filterList: any = document.querySelectorAll(".active-tag");
+        let caseList: any = document.querySelectorAll("." + this.state.caseKey);
+        let filterList: any = document.querySelectorAll("." + this.state.filter);
+        let defaultFilter: any = document.querySelector("." + this.state.default);
+
+        if ()
+        e.target.getAttribute(this.state.dataKey) !== "all"
+            ? this.handleActive(defaultFilter, false)
+            : this.handleActive(defaultFilter, true);
+
 
         for(let filter of filterList){
-            tagList.push(filter.getAttribute("data-tag"));
+            if(filter.classList.contains(this.state.active)){
+                tagList.push(filter.getAttribute(this.state.dataKey))
+            }
         }
 
-        tagList.includes("all")
-            ? this.setDefaultFilters(tagList, caseList)
-            : this.setCustomFilters(tagList, caseList);
+
+        // if (tagList.length === 0){
+        //     this.setDefault(tagList, caseList, filterList);
+        //
+        // } else{
+        //     tagList.includes("all") || e.target.getAttribute(this.state.dataKey) === "all"
+        //         ? this.setDefault(tagList, caseList, filterList)
+        //         : this.setCustom(tagList, caseList);
+        // }
     }
 
-    setCustomFilters(tagList: string[], caseList: string[]) {
+    setCustom(tagList: string[], caseList: string[]) {
         // We have two arrays : active filters (tagList), all cases (caseList)
         // Every case has array of tags
         // We check if that array includes tag from filters
         // But if we select "All" filter, everything will be set to default settings
 
+        let defaultFilter : any = document.querySelector("." + this.state.default);
+        this.handleActive(defaultFilter, true);
+
         tagList.forEach((tag: string) => {
             caseList.forEach((caseItem: any) => {
-                let caseTags = caseItem.getAttribute("data-tag").split(" ");
+                let caseTags = caseItem.getAttribute(this.state.dataKey).split(" ");
                 caseTags.includes(tag)
-                    ? caseItem.classList.remove("hidden")
-                    : caseItem.classList.add("hidden");
-                })
+                    ? this.handleActive(caseItem, true)
+                    : this.handleActive(caseItem, false);
             })
-        }
-
-    setDefaultFilters(tagList: string[], caseList: string[]){
-        // In case when we want to disable all filters we will use "All"
-        caseList.forEach((caseItem: any) => {
-            caseItem.classList.remove("hidden");
         })
+    }
+
+    setDefault(tagList: string[], caseList: string[], filterList: string[]){
+        console.log("DEFAULT");
+        console.log(filterList);
+        // In case when we want to disable all filters we will use "All"
+        filterList.forEach((filter: any) =>{
+            filter.classList.contains(this.state.active)
+                ? this.handleActive(filter, false)
+                : this.handleActive(filter, true);
+        })
+
+        caseList.forEach((caseItem: any) => {
+            this.handleActive(caseItem, true);
+        })
+    }
+
+    handleActive(item: any, show: boolean){
+        show
+            ? item.classList.add(this.state.active)
+            : item.classList.remove(this.state.active);
     }
 
     render() {
@@ -53,11 +96,11 @@ class Projects extends React.Component<any, any> {
                     <div className={"container"}>
                         <h1>portfolio</h1>
                         <ul className={"portfolio-filter"}>
-                            <li onClick={this.filterCases} className={"active-tag"} data-tag={"all"}>all</li>
-                            <li onClick={this.filterCases} data-tag={"javascript"}>javascript</li>
-                            <li onClick={this.filterCases} data-tag={"react"}>react</li>
-                            <li onClick={this.filterCases} data-tag={"wordpress"}>wordpress</li>
-                            <li onClick={this.filterCases} data-tag={"shopify"}>shopify</li>
+                            <li onClick={this.filterCases} className={"filter default active"} data-tag={"all"}>all</li>
+                            <li onClick={this.filterCases} className={"filter"} data-tag={"javascript"}>javascript</li>
+                            <li onClick={this.filterCases} className={"filter"} data-tag={"react"}>react</li>
+                            <li onClick={this.filterCases} className={"filter"} data-tag={"wordpress"}>wordpress</li>
+                            <li onClick={this.filterCases} className={"filter"} data-tag={"shopify"}>shopify</li>
                         </ul>
                     </div>
                 </section>
