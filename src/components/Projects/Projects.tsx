@@ -13,15 +13,16 @@ class Projects extends React.Component<any, any> {
             default: "default",
             custom: "custom",
             hidden: "hidden"
-
         };
     }
 
     filterContent = (e: any) => {
-        // This function check what type of filter we have
-        // If type is default "all" script will run defaultFiltering()
-        // If type is custom => customFiltering()
-        // Params: e
+        /**
+         * This function checks what type of filter we have
+         * If type is default "all" script will run defaultFiltering()
+         * If type is custom => customFiltering()
+         * @param e:any
+         */
 
         e.target.classList.contains(this.state.default)
             ? this.defaultFiltering(e.target)
@@ -29,51 +30,95 @@ class Projects extends React.Component<any, any> {
     }
 
     defaultFiltering(item: any){
+        /**
+         * Here we use filtering for "default"
+         * We get all custom filters and remove active classes from their class list
+         * @param item: any
+         */
+
         let customFilters = document.querySelectorAll("." + this.state.filter);
 
         customFilters.forEach((filter: any) => {
             if(filter.classList.contains(this.state.custom)) this.activateItem(filter, false);
         })
 
+        this.activateItem(item, true);
         this.handleFilter(item);
     }
 
     customFiltering(item: any){
+        /**
+         * Here we use filtering for "custom"
+         * We get default filter and disable it
+         * Then we activate current filter
+         * @param item: any
+         */
+
         let defaultFilter : any = document.querySelector("." + this.state.default);
         this.activateItem(defaultFilter, false);
         this.handleFilter(item);
     }
 
     handleFilter(item: any){
+        /**
+         * This function checks type of filter (default or custom)
+         * If filter is active - disable it
+         * If filter is default - activate it
+         * BUT for default filter we always set active class on click
+         * @param item: any
+         */
+
         if(item.classList.contains(this.state.custom)){
             item.classList.contains(this.state.active)
-                ? item.classList.remove(this.state.active)
-                : item.classList.add(this.state.active);
+                ? this.activateItem(item, false)
+                : this.activateItem(item, true)
         } else{
-            item.classList.add(this.state.active);
+            this.activateItem(item, true)
         }
 
         this.filterCases();
     }
 
     activateItem(item: any, show: boolean){
+        /**
+         *  This function adds "active" class
+         *  If show is true - add class & show is false - remove
+         *  @param item: any
+         *  @param show: boolean
+         */
+
         show
             ? item.classList.add(this.state.active)
             : item.classList.remove(this.state.active);
     }
 
     filterCases(){
+        /**
+         * This function generate array of data-tag from active filters
+         * Then gets data-tag from case and create array of tags
+         * Compare two arrays
+         */
+
         let filters = this.getActiveFilters();
         let cases = this.getCases();
         let filtersTags: string[] = [];
+
+        // Get active filter data-tag attr value
 
         filters.forEach((item: any) => {
             filtersTags.push(item.getAttribute(this.state.dataKey));
         })
 
+        /**
+         * In case when all custom filters are disabled - activate default filter
+         * In case when some custom filters are activated and we click on default filter - show all cases
+         * In case when array of tags contains only custom - compare two arrays and show only compatible cases
+         */
+
         if (filtersTags.length === 0){
             this.defaultFiltering(document.querySelector("." + this.state.default));
         }
+
         else if (filtersTags.includes("all")){
             cases.forEach((item: any) => {
                 item.classList.remove(this.state.hidden);
@@ -94,82 +139,20 @@ class Projects extends React.Component<any, any> {
     }
 
     getCases(){
+        /**
+         * This function returns all cases from page
+         */
+
         return document.querySelectorAll("." + this.state.caseKey);
     }
 
     getActiveFilters(){
+        /**
+         * This function returns all active filters from page
+         */
+        
         return document.querySelectorAll("." + this.state.active);
     }
-
-
-    // filterCases = (e: any) => {
-    //     // Click on filter and select one or more
-    //     // 1.add class to active filter
-    //     // 2. check all filters classes and add them to array
-    //     // 3. filter items according to array with tags
-    //
-    //     e.target.classList.toggle(this.state.active);
-    //     let tagList = [];
-    //     let caseList: any = document.querySelectorAll("." + this.state.caseKey);
-    //     let filterList: any = document.querySelectorAll("." + this.state.filter);
-    //     let defaultFilter: any = document.querySelector("." + this.state.default);
-    //
-    //     e.target.getAttribute(this.state.dataKey) !== "all"
-    //         ? this.handleActive(defaultFilter, false)
-    //         : this.handleActive(defaultFilter, true);
-    //
-    //     for(let filter of filterList){
-    //         if(filter.classList.contains(this.state.active)){
-    //             tagList.push(filter.getAttribute(this.state.dataKey))
-    //         }
-    //     }
-    //
-    //     // if (tagList.length === 0){
-    //     //     this.setDefault(tagList, caseList, filterList);
-    //     //
-    //     // } else{
-    //     //     tagList.includes("all") || e.target.getAttribute(this.state.dataKey) === "all"
-    //     //         ? this.setDefault(tagList, caseList, filterList)
-    //     //         : this.setCustom(tagList, caseList);
-    //     // }
-    // }
-    //
-    // setCustom(tagList: string[], caseList: string[]) {
-    //     // We have two arrays : active filters (tagList), all cases (caseList)
-    //     // Every case has array of tags
-    //     // We check if that array includes tag from filters
-    //     // But if we select "All" filter, everything will be set to default settings
-    //
-    //     let defaultFilter : any = document.querySelector("." + this.state.default);
-    //     this.handleActive(defaultFilter, true);
-    //
-    //     tagList.forEach((tag: string) => {
-    //         caseList.forEach((caseItem: any) => {
-    //             let caseTags = caseItem.getAttribute(this.state.dataKey).split(" ");
-    //             caseTags.includes(tag)
-    //                 ? this.handleActive(caseItem, true)
-    //                 : this.handleActive(caseItem, false);
-    //         })
-    //     })
-    // }
-    //
-    // setDefault(tagList: string[], caseList: string[], filterList: string[]){
-    //     console.log("DEFAULT");
-    //     console.log(filterList);
-    //
-    //     // In case when we want to disable all filters we will use "All"
-    //     filterList.forEach((filter: any) =>{
-    //         filter.classList.contains(this.state.active)
-    //             ? this.handleActive(filter, false)
-    //             : this.handleActive(filter, true);
-    //     })
-    //
-    //     caseList.forEach((caseItem: any) => {
-    //         this.handleActive(caseItem, true);
-    //     })
-    // }
-    //
-
 
     render() {
         return(
