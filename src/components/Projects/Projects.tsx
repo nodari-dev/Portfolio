@@ -1,11 +1,14 @@
 import React from 'react';
 import './style.scss';
+import projects from "../../data/en/projects.json";
 
 class Projects extends React.Component<any, any> {
 
     constructor(props: string ) {
         super(props);
         this.state = {
+            projects: projects,
+            filters: ["all", "javascript", "react", "wordpress", "shopify"],
             active: "active",
             dataKey: "data-tag",
             caseKey: "case",
@@ -128,14 +131,29 @@ class Projects extends React.Component<any, any> {
         else{
             cases.forEach((item: any) => {
                 let list = item.getAttribute(this.state.dataKey).split(" ");
+                let checker = (list: string | any[], filtersTags: any[]) => filtersTags.every(v => list.includes(v));
 
-                filtersTags.forEach((tag: string) => {
-                    list.includes(tag)
-                        ? item.classList.remove(this.state.hidden)
-                        : item.classList.add(this.state.hidden);
-                })
+                checker(list, filtersTags)
+                    ? item.classList.remove(this.state.hidden)
+                    : item.classList.add(this.state.hidden);
             })
         }
+
+        this.notFoundCases()
+            ? console.log("Cases not found")
+            : console.log("Cases found")
+    }
+
+    notFoundCases(){
+        let cases = this.getCases();
+        let count = 0;
+
+        cases.forEach((item: any) => {
+            if (item.classList.contains("hidden")) count+=1
+        })
+
+        console.log(count === cases.length);
+        return count === cases.length;
     }
 
     getCases(){
@@ -150,83 +168,66 @@ class Projects extends React.Component<any, any> {
         /**
          * This function returns all active filters from page
          */
-        
+
         return document.querySelectorAll("." + this.state.active);
     }
 
+    showFilters = () => {
+        /**
+         * Returns filters ul list
+         */
+
+        return(
+            this.state.filters.map((item: string, index:any) => (
+                <li onClick={this.filterContent}
+                    className={(index === 0 ? 'filter default active' : 'filter custom' )} data-tag={item}>
+                    {item}
+                </li>
+            ))
+        )
+    }
+
+    showCases= () => {
+        /**
+         * Returns filters ul list
+         */
+
+        return(
+            this.state.projects.map((item: any) => (
+                <li className={"grid-el case"}
+                    data-tag={item.tags.join(",").replace(",", " ")}>
+                    <a href={item.link}>
+                        <div className={"featured-image"}>
+                            <img src={item.image} alt={item.alt} />
+                        </div>
+                        <div className={"text-container"}>
+                            <p><strong>{item.title}</strong></p>
+                            <p>{item.description}</p>
+                        </div>
+                    </a>
+                </li>
+            ))
+        )
+    }
+
     render() {
+        const filters = this.showFilters();
+        const cases = this.showCases();
         return(
             <>
                 <section className={"projects"}>
                     <div className={"container"}>
                         <h1>portfolio</h1>
                         <ul className={"portfolio-filter"}>
-                            <li onClick={this.filterContent} className={"filter default active"} data-tag={"all"}>all</li>
-                            <li onClick={this.filterContent} className={"filter custom"} data-tag={"javascript"}>javascript</li>
-                            <li onClick={this.filterContent} className={"filter custom"} data-tag={"react"}>react</li>
-                            <li onClick={this.filterContent} className={"filter custom"} data-tag={"wordpress"}>wordpress</li>
-                            <li onClick={this.filterContent} className={"filter custom"} data-tag={"shopify"}>shopify</li>
+                            {filters}
                         </ul>
                     </div>
                 </section>
                 <section className={"projects-list"}>
                     <div className={"container"}>
-                        <ul className={"row-2-no-margin"}>
-                            <li className={"grid-el case"} data-tag={"javascript react"}>
-                                <a href="#">
-                                    <div className={"featured-image"}>
-                                        <img src="https://images.unsplash.com/photo-1631714777290-d81bbb3ef248?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80" alt=""/>
-                                    </div>
-                                    <div className={"text-container"}>
-                                        <p><strong>javascript and react</strong></p>
-                                        <p>javascript and react</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li className={"grid-el case"} data-tag={"typescript"}>
-                                <a href="#">
-                                    <div className={"featured-image"}>
-                                        <img src="https://images.unsplash.com/photo-1632018844764-8a39386a6a82?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80" alt=""/>
-                                    </div>
-                                    <div className={"text-container"}>
-                                        <p><strong>typescript</strong></p>
-                                        <p>typescript</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li className={"grid-el case"} data-tag={"react"}>
-                                <a href="#">
-                                    <div className={"featured-image"}>
-                                        <img src="https://images.unsplash.com/photo-1630435492646-3864eb4fe197?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt=""/>
-                                    </div>
-                                    <div className={"text-container"}>
-                                        <p><strong>react</strong></p>
-                                        <p>react</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li className={"grid-el case"} data-tag={"wordpress"}>
-                                <a href="#">
-                                    <div className={"featured-image"}>
-                                        <img src="https://images.unsplash.com/photo-1631746165838-e92bb88249d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt=""/>
-                                    </div>
-                                    <div className={"text-container"}>
-                                        <p><strong>wordpress</strong></p>
-                                        <p>wordpress</p>
-                                    </div>
-                                </a>
-                            </li>
-                            <li className={"grid-el case"} data-tag={"shopify"}>
-                                <a href="#">
-                                    <div className={"featured-image"}>
-                                        <img src="https://images.unsplash.com/photo-1631746165838-e92bb88249d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt=""/>
-                                    </div>
-                                    <div className={"text-container"}>
-                                        <p><strong>shopify</strong></p>
-                                        <p>shopify</p>
-                                    </div>
-                                </a>
-                            </li>
+
+                        <ul className={"row-2"}>
+                            {cases}
                         </ul>
                     </div>
                 </section>

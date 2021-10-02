@@ -17,13 +17,12 @@ section.projects{
       & li{
         margin: 0 10px;
         cursor: pointer;
-        opacity: .8;
+        opacity: .5;
         text-decoration: underline;
+        @include transition;
 
         &.active{
           opacity: 1;
-          border:1px solid red;
-          box-sizing: border-box;
         }
       }
     }
@@ -45,12 +44,13 @@ section.projects-list{
 
       & li.case {
         position: relative;
-        //transition: opacity 0.4s cubic-bezier(0, 1, 0.4, 1), transform 0.4s cubic-bezier(0.18, 1.25, 0.4, 1), visibility 0.4s linear;
+        opacity: 1;
+        @include transition;
 
         &.hidden{
           @include dev-border;
 
-          animation: hideCase 2s;
+          //animation: hideCase 2s;
         }
 
         & a {
@@ -64,13 +64,14 @@ section.projects-list{
             overflow: hidden;
 
             & img {
-              filter: grayscale(100%);
+              filter: grayscale(0);
               @include transition;
               @include image-cover;
             }
           }
 
           & .text-container {
+            width: 100%;
             position: absolute;
             left: 30px;
             bottom: 30px;
@@ -93,7 +94,7 @@ section.projects-list{
           & .featured-image {
 
             & img {
-              filter: grayscale(0);
+              filter: grayscale(100%);
               transform: scale(1.05);
               -moz-transform: scale(1.05);
               -webkit-transform: scale(1.05);
@@ -114,7 +115,10 @@ section.projects-list{
   0%{
     opacity: 0;
   }
+  50%{
+    visibility: hidden;
+  }
   100%{
-   display: none;
+    display: none;
   }
 }
