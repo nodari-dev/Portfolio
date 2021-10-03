@@ -34,21 +34,25 @@ section.projects-list{
   flex-direction: column;
   align-items: center;
 
-  & .container {
+  & .case-container {
 
     & ul {
       width: 100%;
       margin: 55px 0;
       display: flex;
       justify-content: flex-start;
+      white-space: nowrap;
 
       & li.case {
         position: relative;
         opacity: 1;
+        box-sizing: border-box;
+        border:2px solid $dark-color;
         @include transition;
 
         &.hidden{
-          @include dev-border;
+          filter: grayscale(100%);
+          display: none;
 
           //animation: hideCase 2s;
         }
@@ -94,7 +98,6 @@ section.projects-list{
           & .featured-image {
 
             & img {
-              filter: grayscale(100%);
               transform: scale(1.05);
               -moz-transform: scale(1.05);
               -webkit-transform: scale(1.05);
@@ -106,6 +109,21 @@ section.projects-list{
             opacity: 1;
           }
         }
+      }
+    }
+
+    & .not-found{
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;  
+      justify-content: center;
+
+      & img{
+        width: 25%;
+      }
+      &.hidden{
+        display: none;
       }
     }
   }

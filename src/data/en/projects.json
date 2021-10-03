@@ -1,4 +1,6 @@
-[
+{
+  "filtersList": ["all", "javascript", "react", "wordpress", "shopify"],
+  "caseList": [
     {
       "title": "project",
       "description": "text here",
@@ -21,6 +23,12 @@
       "tags": ["shopify", "javascript"],
       "image": "https://images.unsplash.com/photo-1630435492646-3864eb4fe197?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
       "alt": "image alt",
-      "link": ""
+      "link": "#"
     }
-]
+  ],
+  "notFound": {
+    "img": "/assets/images/png/not-found.png",
+    "alt": "cases",
+    "heading": "Not found, select other filters"
+  }
+}

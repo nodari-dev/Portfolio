@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createElement} from 'react';
 import './style.scss';
 import projects from "../../data/en/projects.json";
 
@@ -7,8 +7,6 @@ class Projects extends React.Component<any, any> {
     constructor(props: string ) {
         super(props);
         this.state = {
-            projects: projects,
-            filters: ["all", "javascript", "react", "wordpress", "shopify"],
             active: "active",
             dataKey: "data-tag",
             caseKey: "case",
@@ -139,22 +137,30 @@ class Projects extends React.Component<any, any> {
             })
         }
 
-        this.notFoundCases()
-            ? console.log("Cases not found")
-            : console.log("Cases found")
+        this.notFoundCases();
+
     }
 
-    notFoundCases(){
+    notFoundCases() {
+        /**
+         * This function checks all cases and if all of them are hidden => set not found
+         */
+
         let cases = this.getCases();
         let count = 0;
+        let notFoundBlock: any = document.querySelector(".not-found");
+
 
         cases.forEach((item: any) => {
-            if (item.classList.contains("hidden")) count+=1
+            if (item.classList.contains("hidden")) count += 1;
         })
 
-        console.log(count === cases.length);
-        return count === cases.length;
+        count === cases.length
+            ? notFoundBlock.classList.remove("hidden")
+            : notFoundBlock.classList.add("hidden");
     }
+
+
 
     getCases(){
         /**
@@ -178,22 +184,23 @@ class Projects extends React.Component<any, any> {
          */
 
         return(
-            this.state.filters.map((item: string, index:any) => (
+            projects.filtersList.map((item: string, index:any) => (
                 <li onClick={this.filterContent}
-                    className={(index === 0 ? 'filter default active' : 'filter custom' )} data-tag={item}>
+                    className={(index === 0 ? 'filter default active' : 'filter custom' )}
+                    data-tag={item}>
                     {item}
                 </li>
             ))
         )
     }
 
-    showCases= () => {
+    showCases = () => {
         /**
-         * Returns filters ul list
+         * Returns cases based on json file
          */
 
         return(
-            this.state.projects.map((item: any) => (
+            projects.caseList.map((item: any) => (
                 <li className={"grid-el case"}
                     data-tag={item.tags.join(",").replace(",", " ")}>
                     <a href={item.link}>
@@ -213,6 +220,7 @@ class Projects extends React.Component<any, any> {
     render() {
         const filters = this.showFilters();
         const cases = this.showCases();
+
         return(
             <>
                 <section className={"projects"}>
@@ -224,11 +232,16 @@ class Projects extends React.Component<any, any> {
                     </div>
                 </section>
                 <section className={"projects-list"}>
-                    <div className={"container"}>
+                    <div className={"container case-container"}>
 
-                        <ul className={"row-2"}>
+                        <ul className={"row-2 filters-list"}>
                             {cases}
                         </ul>
+                        <div className={"not-found hidden"}>
+                            <img src={projects.notFound.img} alt={projects.notFound.alt}/>
+                            <h2>{projects.notFound.heading}</h2>
+                        </div>
+
                     </div>
                 </section>
             </>
