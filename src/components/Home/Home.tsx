@@ -1,40 +1,31 @@
 import React from "react";
 import './style.scss';
+import home from "../../data/en/home.json";
 
 class Home extends React.Component<any, any> {
+
+    techList(){
+        let list = home["tech-list"];
+        return(
+            list.map((item: any) => (
+                <li>
+                    <img src={item.img} alt={item.alt}/>
+                </li>
+            )
+        ))
+
+    }
+
     render() {
         return(
             <>
                 <section className={"home"}>
                     <div className={"container"}>
                         <div className="text-container">
-                            <h1>dev.designer</h1>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also</p>
+                            <h1>{home.heading}</h1>
+                            <p>{home.description}</p>
                             <ul className={"tech-list"}>
-                                <li>
-                                    <img src={process.env.PUBLIC_URL + 'assets/images/svg/javascript.svg'} alt=""/>
-                                </li>
-                                <li>
-                                    <img src={process.env.PUBLIC_URL + 'assets/images/svg/typescript.svg'} alt=""/>
-                                </li>
-                                <li>
-                                    <img src={process.env.PUBLIC_URL + 'assets/images/svg/react.svg'} alt=""/>
-                                </li>
-                                <li>
-                                    <img src={process.env.PUBLIC_URL + 'assets/images/svg/php.svg'} alt=""/>
-                                </li>
-                                <li>
-                                    <img src={process.env.PUBLIC_URL + 'assets/images/svg/wordpress.svg'} alt=""/>
-                                </li>
-                                <li>
-                                    <img src={process.env.PUBLIC_URL + 'assets/images/svg/shopify.svg'} alt=""/>
-                                </li>
-                                <li>
-                                    <img src={process.env.PUBLIC_URL + 'assets/images/svg/sass.svg'} alt=""/>
-                                </li>
-                                <li>
-                                    <img src={process.env.PUBLIC_URL + 'assets/images/svg/less.svg'} alt=""/>
-                                </li>
+                                {this.techList()}
                             </ul>
                         </div>
                     </div>

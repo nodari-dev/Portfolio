@@ -1,0 +1,38 @@
+{
+  "heading": "dev.designer",
+  "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also",
+  "tech-list": [
+    {
+      "img": "/assets/images/svg/javascript.svg",
+      "alt": "javascript"
+    },
+    {
+      "img": "/assets/images/svg/typescript.svg",
+      "alt": "typescript"
+    },
+    {
+      "img": "/assets/images/svg/react.svg",
+      "alt": "react"
+    },
+    {
+      "img": "/assets/images/svg/php.svg",
+      "alt": "php"
+    },
+    {
+      "img": "/assets/images/svg/wordpress.svg",
+      "alt": "wordpress"
+    },
+    {
+      "img": "/assets/images/svg/shopify.svg",
+      "alt": "shopify"
+    },
+    {
+      "img": "/assets/images/svg/sass.svg",
+      "alt": "sass"
+    },
+    {
+      "img": "/assets/images/svg/less.svg",
+      "alt": "less"
+    }
+  ]
+}
