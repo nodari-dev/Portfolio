@@ -1,38 +1,30 @@
 import React from "react";
 import './style.scss';
+import content from "../../data/en/footer.json";
 
 class Footer extends React.Component<any, any> {
+
+    getSocial = () => {
+        return(
+            content.social.map((item: any) => (
+                <li>
+                    <a href={item.link} target={"_blank"} rel="noreferrer">
+                        <img src={item.img} alt={item.alt}/>
+                    </a>
+                </li>
+            ))
+        )
+    }
+
     render() {
+        const social = this.getSocial();
         return (
             <section className={"footer"}>
                 <div className="container">
                     <ul>
-                        <li>
-                            <a
-                                href="https://github.com/nodari-dev"
-                                target={"_blank"}
-                                rel="noreferrer">
-                                <img src={process.env.PUBLIC_URL + 'assets/images/svg/github.svg'} alt=""/>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href={"https://www.linkedin.com/in/nodari-pylypyshak-8a5716206/"}
-                                target={"_blank"}
-                                rel="noreferrer">
-                                <img src={process.env.PUBLIC_URL + 'assets/images/svg/linkedin.svg'} alt=""/>
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href={"https://www.instagram.com/nodaridev/"}
-                                target={"_blank"}
-                                rel="noreferrer">
-                                <img src={process.env.PUBLIC_URL + 'assets/images/svg/instagram.svg'} alt=""/>
-                            </a>
-                        </li>
+                        {social}
                     </ul>
-                    <p>nodari.pylypyshak &copy; All rights reserved</p>
+                    <p>{content.copyright}</p>
                 </div>
             </section>
         )

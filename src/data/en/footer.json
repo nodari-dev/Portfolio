@@ -1,0 +1,21 @@
+{
+  "copyright": "nodari.pylypyshak &#169; All rights reserved",
+  "social": [
+    {
+      "link": "https://github.com/nodari-dev",
+      "img": "/assets/images/svg/github.svg",
+      "alt": "github"
+    },
+    {
+      "link": "https://www.linkedin.com/in/nodari-pylypyshak-8a5716206/",
+      "img": "/assets/images/svg/linkedin.svg",
+      "alt": "linkedin"
+    },
+    {
+      "link": "https://t.me/nodaridev",
+      "img": "/assets/images/svg/telegram.svg",
+      "alt": "telegram"
+    }
+  ]
+}
+

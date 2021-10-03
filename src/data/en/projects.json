@@ -1,4 +1,5 @@
 {
+  "heading": "portfolio",
   "filtersList": ["all", "javascript", "react", "wordpress", "shopify"],
   "caseList": [
     {

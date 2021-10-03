@@ -98,6 +98,7 @@ section.projects-list{
           & .featured-image {
 
             & img {
+              filter: grayscale(100%);
               transform: scale(1.05);
               -moz-transform: scale(1.05);
               -webkit-transform: scale(1.05);
@@ -116,7 +117,7 @@ section.projects-list{
       width: 100%;
       height: auto;
       display: flex;
-      align-items: center;  
+      align-items: center;
       justify-content: center;
 
       & img{

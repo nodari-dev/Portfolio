@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
-import Footer from "../Footer/Footer";
+import content from "../../data/en/404.json";
 
 class NotFound extends React.Component<any, any> {
     render() {
@@ -9,9 +9,9 @@ class NotFound extends React.Component<any, any> {
                 <section className={"not-found"}>
                     <div className={"container"}>
                         <div className="text-container">
-                            <h1>404</h1>
-                            <p>this page is missing or you assemble the link incorrectly. don’t worry you can return to browsing just by clicking one of the abowe links.</p>
-                            <a href="/">back home</a>
+                            <h1>{content.heading}</h1>
+                            <p>{content.paragraph}</p>
+                            <a href={content.link}>{content.linkText}</a>
                         </div>
                     </div>
                 </section>

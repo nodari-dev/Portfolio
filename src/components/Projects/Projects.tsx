@@ -1,6 +1,6 @@
-import React, {createElement} from 'react';
+import React from 'react';
 import './style.scss';
-import projects from "../../data/en/projects.json";
+import content from "../../data/en/projects.json";
 
 class Projects extends React.Component<any, any> {
 
@@ -184,7 +184,7 @@ class Projects extends React.Component<any, any> {
          */
 
         return(
-            projects.filtersList.map((item: string, index:any) => (
+            content.filtersList.map((item: string, index:any) => (
                 <li onClick={this.filterContent}
                     className={(index === 0 ? 'filter default active' : 'filter custom' )}
                     data-tag={item}>
@@ -200,7 +200,7 @@ class Projects extends React.Component<any, any> {
          */
 
         return(
-            projects.caseList.map((item: any) => (
+            content.caseList.map((item: any) => (
                 <li className={"grid-el case"}
                     data-tag={item.tags.join(",").replace(",", " ")}>
                     <a href={item.link}>
@@ -225,7 +225,7 @@ class Projects extends React.Component<any, any> {
             <>
                 <section className={"projects"}>
                     <div className={"container"}>
-                        <h1>portfolio</h1>
+                        <h1>{content.heading}</h1>
                         <ul className={"portfolio-filter"}>
                             {filters}
                         </ul>
@@ -238,8 +238,8 @@ class Projects extends React.Component<any, any> {
                             {cases}
                         </ul>
                         <div className={"not-found hidden"}>
-                            <img src={projects.notFound.img} alt={projects.notFound.alt}/>
-                            <h2>{projects.notFound.heading}</h2>
+                            <img src={content.notFound.img} alt={content.notFound.alt}/>
+                            <h2>{content.notFound.heading}</h2>
                         </div>
 
                     </div>

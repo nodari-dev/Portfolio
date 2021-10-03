@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.scss';
+import content from "../../data/en/about.json";
 
 class About extends React.Component<any, any> {
     render() {
@@ -8,9 +9,9 @@ class About extends React.Component<any, any> {
                 <section className="about">
                     <div className="container">
                         <h1 className={"huge"}>Nodari <br/> Pylypyshak</h1>
-                        <img src="https://images.unsplash.com/photo-1422564030440-1ecae6e21f67?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80" alt=""/>
+                        <img src={content.photo} alt={content.photoAlt}/>
                         <div className="text-container">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                            <p>{content.description}</p>
                         </div>
 
                         <div className="content">
